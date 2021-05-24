@@ -1,0 +1,10 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!49 &4900000
+TextAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Footman_Default Variant.animMapInfo
+  m_Script: '{"maxHeight":340,"animMapClips":[{"startHeight":0,"height":40,"name":"Attack01","animLen":1.3333333730697632},{"startHeight":40,"height":40,"name":"Attack02","animLen":1.3333333730697632},{"startHeight":80,"height":30,"name":"Death","animLen":1.0},{"startHeight":110,"height":40,"name":"GetHit","animLen":1.3333333730697632},{"startHeight":150,"height":30,"name":"Idle","animLen":1.0},{"startHeight":180,"height":20,"name":"Run","animLen":0.6666666865348816},{"startHeight":200,"height":100,"name":"Victory","animLen":3.3333334922790529},{"startHeight":300,"height":40,"name":"Walk","animLen":1.3333333730697632}]}'
