@@ -87,27 +87,34 @@
                 float animMap_y1 = animInfo.animRate1;
                 float animMap_y2 = animInfo.animRate2;
                 float animLerp = animInfo.animLerp;
-                positionOS = mul(float3(0, 0, 0), positionOS);
+                // positionOS = mul(float3(0, 0, 0), positionOS);//要么动画不对 要么旋转不对
 
+                
                 float animMap_x = (vid + 0.5) * _AnimMap_TexelSize.x;
                 
                 float4 pos1 = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y1, 0, 0));
                 float4 pos2 = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y2, 0, 0));
 
                 pos = lerp(pos1, pos2, animLerp);
-                positionOS = mul(animInfo.trs, float4(positionOS, 1)).xyz;
-                positionOS += pos;
+                // positionOS = mul(animInfo.trs, float4(positionOS, 1)).xyz;
+
+                pos = mul(animInfo.trs, pos);
+                // float4 center = mul(animInfo.trs, float4(0, 0, 0, 1));
+                // pos = pos + center;
+                // positionOS += pos;
+                // positionOS = mul(float3(0, 0, 0), positionOS);
+                // positionOS = center + pos;
 
                 // #endif
                 
-                float4 positionWS = mul(_LocalToWorld, float4(positionOS, 1));
+                float4 positionWS = mul(_LocalToWorld, pos);
                 positionWS /= positionWS.w;
 
                 
                 output.uv = input.uv;
                 output.positionWS = positionWS;
-                output.positionCS = TransformObjectToHClip(positionOS);
-                // output.positionCS = mul(UNITY_MATRIX_VP, positionWS);
+                // output.positionCS = TransformObjectToHClip(positionOS);
+                output.positionCS = mul(UNITY_MATRIX_VP, positionWS);
                 return output;
             }
             
